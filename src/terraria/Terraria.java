@@ -8,7 +8,7 @@ public class Terraria {
         
         // Sumar los números y mostrar el resultado
         int resultado = cubo.sumar();
-        System.out.println("La suma de los números es: " + resultado);
+        System.out.println(" suma de los números es: " + resultado);
     }
     
 }
