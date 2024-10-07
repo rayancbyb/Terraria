@@ -23,9 +23,12 @@ public class Personaje {
     }
 
     // Método para mover al personaje
-    public void mover(int nuevaX, int nuevaY) {
-        this.x = nuevaX;
-        this.y = nuevaY;
+    public void mover(char movimiento) {
+       if(movimiento =='d'){
+            x=x+1;
+       }else if(movimiento == 'a'){
+            x=x-1;
+       }
     }
 
     // Método para reducir la salud
