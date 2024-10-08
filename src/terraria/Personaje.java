@@ -33,6 +33,17 @@ public class Personaje {
     
     }
 
+  // Método para saltar al personaje
+  public void saltar(char movimiento) {
+      
+    if(movimiento =='w'){
+        y=y+1;
+        
+   }
+
+}
+
+
     // Método para reducir la salud
     public void reducirSalud(int cantidad) {
         this.salud -= cantidad;
