@@ -15,7 +15,7 @@ public class Terraria {
         boolean salida = true;
 
         while (salida) {
-            movimiento = scanner.next().charAt(0); // Leer el primer carácter ingresado
+            movimiento = scanner.next().toCharArray()[0]; // Leer el primer carácter ingresado
 
             if (movimiento == 'Q' || movimiento == 'q') {
                 // Salir del bucle si el jugador ingresa 'Q' o 'q'
