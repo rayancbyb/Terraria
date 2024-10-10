@@ -8,7 +8,7 @@ public class Terraria {
 
         Personaje personaje1 = new Personaje(4, 4, 0, 0);
         
-        System.out.println("holaosición inicial X: " + personaje1.getX());
+        System.out.println("posición inicial X: " + personaje1.getX()+" Y: "+ personaje1.getY());
        
         Scanner scanner = new Scanner(System.in);
         char movimiento;
@@ -22,11 +22,8 @@ public class Terraria {
                 System.out.println("¡Has salido del juego!");
                 salida = false;
             } else {
-                if (movimiento == 'w') {
-                    personaje1.saltar(movimiento);  // Mover hacia arriba (saltar)
-                } else {
-                    personaje1.mover(movimiento);  // Mover izquierda/derecha
-                }
+                
+                    personaje1.mover(movimiento);  // Mover en todas las dirreciones
                 System.out.println("Posición actual X: " + personaje1.getX() + ", Y: " + personaje1.getY());
             }
         }

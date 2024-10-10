@@ -36,15 +36,15 @@ public class Personaje {
             x = x + 1;
         } else if(movimiento == 'a'){
             x = x - 1;
+        }else if(movimiento=='w'){
+            y=y+1;
+        
+        }else if(movimiento=='s'){
+            y=y-1;
         }
     }
 
-    // Método para saltar al personaje
-    public void saltar(char movimiento) {
-        if(movimiento == 'w'){
-            y = y + 1;
-        }
-    }
+   
 
     // Método para reducir la salud
     public void reducirSalud(int cantidad) {
