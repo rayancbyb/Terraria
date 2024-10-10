@@ -22,27 +22,29 @@ public class Personaje {
         this.y = y;
     }
 
-    // Método para mover al personaje
-    public void mover(char movimiento) {
-      
-        if(movimiento =='d'){
-            x=x+1;
-       }else if(movimiento == 'a'){
-            x=x-1;
-       }
-    
+    // Constructor copia
+    public Personaje(Personaje otroPersonaje) {
+        this.salud = otroPersonaje.salud;
+        this.hambre = otroPersonaje.hambre;
+        this.x = otroPersonaje.x;
+        this.y = otroPersonaje.y;
     }
 
-  // Método para saltar al personaje
-  public void saltar(char movimiento) {
-      
-    if(movimiento =='w'){
-        y=y+1;
-        
-   }
+    // Método para mover al personaje
+    public void mover(char movimiento) {
+        if(movimiento == 'd'){
+            x = x + 1;
+        } else if(movimiento == 'a'){
+            x = x - 1;
+        }
+    }
 
-}
-
+    // Método para saltar al personaje
+    public void saltar(char movimiento) {
+        if(movimiento == 'w'){
+            y = y + 1;
+        }
+    }
 
     // Método para reducir la salud
     public void reducirSalud(int cantidad) {
