@@ -10,7 +10,7 @@ public class Terraria {
 
         Personaje personaje1 = new Personaje(4, 4, 0, 0);
         
-        System.out.println("Posición inicial X: " + personaje1.getX());
+        System.out.println("holaosición inicial X: " + personaje1.getX());
        
         Scanner scanner = new Scanner(System.in);
         char movimiento;
