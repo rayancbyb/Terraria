@@ -7,9 +7,9 @@ public class Terraria {
     public static void main(String[] args) {
 
         Personaje personaje1 = new Personaje(4, 4, 0, 0);
-
-        System.out.println("Posición inicial X: " + personaje1.getX() + ", Y: " + personaje1.getY());
-
+        
+        System.out.println("holaosición inicial X: " + personaje1.getX());
+       
         Scanner scanner = new Scanner(System.in);
         char movimiento;
         boolean salida = true;
