@@ -32,19 +32,16 @@ public class Personaje {
 
     // Método para mover al personaje
     public void mover(char movimiento) {
-        if(movimiento == 'd'){
+        if (movimiento == 'd') {
             x = x + 1;
-        } else if(movimiento == 'a'){
+        } else if (movimiento == 'a') {
             x = x - 1;
-        }else if(movimiento=='w'){
-            y=y+1;
-        
-        }else if(movimiento=='s'){
-            y=y-1;
+        } else if (movimiento == 'w') {
+            y = y + 1;
+        } else if (movimiento == 's') {
+            y = y - 1;
         }
     }
-
-   
 
     // Método para reducir la salud
     public void reducirSalud(int cantidad) {
@@ -93,7 +90,7 @@ public class Personaje {
 
     public void setY(int y) {
         this.y = y;
-    
+    }
 
     // Método para imprimir la información del personaje
     public void mostrarInformacion() {
