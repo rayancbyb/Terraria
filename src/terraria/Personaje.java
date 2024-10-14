@@ -93,7 +93,7 @@ public class Personaje {
 
     public void setY(int y) {
         this.y = y;
-    }
+    
 
     // Método para imprimir la información del personaje
     public void mostrarInformacion() {
