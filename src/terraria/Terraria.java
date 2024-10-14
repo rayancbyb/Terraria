@@ -5,27 +5,28 @@ import java.util.Scanner;
 public class Terraria {
 
     public static void main(String[] args) {
-
-        Personaje personaje1 = new Personaje(4, 4, 0, 0);
+        // Crear un personaje inicial
+        Personaje personaje1 = new Personaje(100, 100, 0, 0);
         
-        System.out.println("posición inicial X: " + personaje1.getX()+" Y: "+ personaje1.getY());
-       
         Scanner scanner = new Scanner(System.in);
         char movimiento;
-        boolean salida = true;
+        boolean enJuego = true;
 
-        while (salida) {
-            movimiento = scanner.next().toCharArray()[0]; // Leer el primer carácter ingresado
+        while (enJuego) {
+            System.out.println("Introduce un movimiento (WASD) o Q para salir: ");
+            movimiento = scanner.next().charAt(0);
 
             if (movimiento == 'Q' || movimiento == 'q') {
-                // Salir del bucle si el jugador ingresa 'Q' o 'q'
                 System.out.println("¡Has salido del juego!");
-                salida = false;
+                enJuego = false;
             } else {
-                
-                    personaje1.mover(movimiento);  // Mover en todas las dirreciones
-                System.out.println("Posición actual X: " + personaje1.getX() + ", Y: " + personaje1.getY());
+                personaje1.mover(movimiento); // Mueve el personaje
+                personaje1.reducirHambre(1);  // Simula que el personaje tiene hambre al moverse
+                personaje1.mostrarInformacion();  // Muestra la info actualizada
             }
         }
+
+        scanner.close();
     }
 }
+
