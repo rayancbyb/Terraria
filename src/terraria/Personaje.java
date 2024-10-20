@@ -14,7 +14,7 @@ public class Personaje {
         this.y = 0;
     }
 
-    // Constructor con parámetros 
+    // Constructor con parámetros       
     public Personaje(int salud, int hambre, int x, int y) {
         this.salud = salud;
         this.hambre = hambre;
