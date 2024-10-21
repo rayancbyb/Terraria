@@ -6,11 +6,29 @@ public class Terraria {
 
     public static void main(String[] args) {
         // Crear un personaje inicial
-        Personaje personaje1 = new Personaje(100, 100, 0, 0);
+        Personaje personaje1 = new Personaje(100, 100, 0, 0, 0);
         
         Scanner scanner = new Scanner(System.in);
         char movimiento;
         boolean enJuego = true;
+        
+        
+                                personaje1.mostrarInformacion();  // Muestra la info actualizada
+
+        
+       
+        Cultivo zanahoria = Cultivo.ZANAHORIA;
+
+        // Mostrar información de los cultivos
+    
+        System.out.println(zanahoria.mostrarInfo());
+
+        // Simular el crecimiento de los cultivos
+       
+        zanahoria.crecer(personaje1);
+        
+                        personaje1.mostrarInformacion();  // Muestra la info actualizada
+
 
         while (enJuego) {
             System.out.println("Introduce un movimiento (WASD) o Q para salir: ");

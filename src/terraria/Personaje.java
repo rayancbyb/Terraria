@@ -5,6 +5,7 @@ public class Personaje {
     private int hambre;
     private int x;
     private int y;
+    private int experiencia;  // Nuevo atributo
 
     // Constructor por defecto
     public Personaje() {
@@ -12,14 +13,16 @@ public class Personaje {
         this.hambre = 100;
         this.x = 0;
         this.y = 0;
+        this.experiencia = 0;  // Inicialización de experiencia
     }
 
-    // Constructor con parámetros       
-    public Personaje(int salud, int hambre, int x, int y) {
+    // Constructor con parámetros
+    public Personaje(int salud, int hambre, int x, int y, int experiencia) {
         this.salud = salud;
         this.hambre = hambre;
         this.x = x;
         this.y = y;
+        this.experiencia = experiencia;  // Inicialización de experiencia
     }
 
     // Constructor copia
@@ -28,6 +31,7 @@ public class Personaje {
         this.hambre = otroPersonaje.hambre;
         this.x = otroPersonaje.x;
         this.y = otroPersonaje.y;
+        this.experiencia = otroPersonaje.experiencia;  // Copiar experiencia
     }
 
     // Método para mover al personaje
@@ -57,6 +61,11 @@ public class Personaje {
         if (this.hambre < 0) {
             this.hambre = 0;
         }
+    }
+
+    // Método para aumentar la experiencia
+    public void aumentarExperiencia(int cantidad) {
+        this.experiencia += cantidad;
     }
 
     // Getters y setters para los atributos
@@ -92,10 +101,19 @@ public class Personaje {
         this.y = y;
     }
 
+    public int getExperiencia() {
+        return experiencia;
+    }
+
+    public void setExperiencia(int experiencia) {
+        this.experiencia = experiencia;
+    }
+
     // Método para imprimir la información del personaje
     public void mostrarInformacion() {
         System.out.println("Salud: " + this.salud);
         System.out.println("Hambre: " + this.hambre);
         System.out.println("Posición: (" + this.x + ", " + this.y + ")");
+        System.out.println("Experiencia: " + this.experiencia);  // Mostrar experiencia
     }
 }
