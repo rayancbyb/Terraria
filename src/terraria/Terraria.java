@@ -27,11 +27,11 @@ public class Terraria {
        
         zanahoria.crecer(personaje1);
         
-                        personaje1.mostrarInformacion();  // Muestra la info actualizada
+        personaje1.mostrarInformacion();  // Muestra la info actualizada
 
 
         while (enJuego) {
-            System.out.println("Introduce un movimiento (WASD) o Q para salir: ");
+            System.out.println("Introduce un movimiento (A/D) o Q para salir: ");
             movimiento = scanner.next().charAt(0);
 
             if (movimiento == 'Q' || movimiento == 'q') {

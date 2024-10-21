@@ -40,10 +40,6 @@ public class Personaje {
             x = x + 1;
         } else if (movimiento == 'a') {
             x = x - 1;
-        } else if (movimiento == 'w') {
-            y = y + 1;
-        } else if (movimiento == 's') {
-            y = y - 1;
         }
     }
 
