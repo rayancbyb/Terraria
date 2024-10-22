@@ -15,7 +15,7 @@ public class Personaje {
         this.x = 0;
         this.y = 0;
         this.experiencia = 0;  // Inicialización de experiencia
-        
+        this.direccion = 'd';  // Inicializa la dirección a la derecha por defecto
     }
 
     // Constructor con parámetros
@@ -35,9 +35,10 @@ public class Personaje {
         this.x = otroPersonaje.x;
         this.y = otroPersonaje.y;
         this.experiencia = otroPersonaje.experiencia;  // Copiar experiencia
+        this.direccion = otroPersonaje.direccion;  // Copiar dirección
     }
 
-   // Métodos getter y setter para dirección
+    // Métodos getter y setter para dirección
     public char getDireccion() {
         return direccion;
     }
@@ -46,6 +47,7 @@ public class Personaje {
         this.direccion = direccion;
     }
 
+    // Método para mover al personaje
     public void mover(char movimiento) {
         if (movimiento == 'd') {
             x = x + 30;
@@ -54,7 +56,6 @@ public class Personaje {
         }
         this.direccion = movimiento;  // Actualiza la dirección
     }
-
 
     // Método para reducir la salud
     public void reducirSalud(int cantidad) {
