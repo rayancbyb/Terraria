@@ -8,7 +8,8 @@ public class Terraria {
         ventana.setSize(900, 600);
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        Personaje personaje1 = new Personaje(100, 100, 50, 530, 0);
+        // Ajusta la posición y del personaje para que esté encima del césped
+        Personaje personaje1 = new Personaje(100, 100, 50, 500, 0); // Cambié la posición y a 500
 
         Lienzo lienzo = new Lienzo(personaje1);
         ventana.add(lienzo);
