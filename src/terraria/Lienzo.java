@@ -41,6 +41,13 @@ public class Lienzo extends Canvas implements KeyListener {
         } else {
             g.fillRect(personaje.getX(), personaje.getY(), 50, 50);
         }
+
+        // Mostrar la información del personaje en blanco en la parte superior izquierda
+        g.setColor(java.awt.Color.WHITE);
+        g.drawString("Salud: " + personaje.getSalud(), 10, 20);
+        g.drawString("Hambre: " + personaje.getHambre(), 10, 35);
+        g.drawString("Posición: (" + personaje.getX() + ", " + personaje.getY() + ")", 10, 50);
+        g.drawString("Experiencia: " + personaje.getExperiencia(), 10, 65);
     }
 
     @Override
