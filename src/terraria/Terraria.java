@@ -9,7 +9,7 @@ public class Terraria {
         ventana.setSize(900, 600);
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        Personaje personaje1 = new Personaje(100, 100, 50, 400, 0);
+        Personaje personaje1 = new Personaje(100, 100, 50, 530, 0);
 
         Lienzo lienzo = new Lienzo(personaje1);
         ventana.add(lienzo);
