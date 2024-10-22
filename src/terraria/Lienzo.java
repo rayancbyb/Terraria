@@ -16,6 +16,7 @@ public class Lienzo extends Canvas implements KeyListener {
     private Image imagenIzquierda;
     private Image fondo;
     private Bloque[] suelo;
+    private Bloque[] troncos;
 
     public Lienzo(Personaje personaje) {
         this.personaje = personaje;
@@ -29,6 +30,7 @@ public class Lienzo extends Canvas implements KeyListener {
         addKeyListener(this);
         setFocusable(true);
         crearSuelo();
+        crearTroncos();
     }
 
     private void crearSuelo() {
@@ -41,6 +43,19 @@ public class Lienzo extends Canvas implements KeyListener {
         }
     }
 
+    private void crearTroncos() {
+        int numPilas = 5; // Número de pilas de troncos
+        int troncosPorPila = 3; // Número de troncos por pila
+        troncos = new Bloque[numPilas * troncosPorPila];
+        int altoBloque = 50;
+        for (int i = 0; i < numPilas; i++) {
+            int x = i * altoBloque * 3; // Espaciado entre pilas
+            for (int j = 0; j < troncosPorPila; j++) {
+                troncos[i * troncosPorPila + j] = new Tronco(x, 550 - (j + 1) * altoBloque, altoBloque);
+            }
+        }
+    }
+
     @Override
     public void paint(Graphics g) {
         super.paint(g);
@@ -49,6 +64,9 @@ public class Lienzo extends Canvas implements KeyListener {
         }
         for (Bloque bloque : suelo) {
             bloque.dibujar(g);
+        }
+        for (Bloque tronco : troncos) {
+            tronco.dibujar(g);
         }
         if (personaje.getDireccion() == 'd' && imagenDerecha != null) {
             g.drawImage(imagenDerecha, personaje.getX(), personaje.getY(), 50, 50, this);
