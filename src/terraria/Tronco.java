@@ -7,7 +7,7 @@ import javax.imageio.ImageIO;
 
 public class Tronco extends Bloque {
     public Tronco(int x, int y, int tamaño) {
-        super(x, y, tamaño, "Tronco", cargarImagen());
+        super(x, y, tamaño, "Tronco", cargarImagen(), 3); // 3 segundos de resistencia, puedes ajustar este valor según tu necesidad
     }
 
     private static Image cargarImagen() {

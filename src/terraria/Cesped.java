@@ -7,7 +7,7 @@ import javax.imageio.ImageIO;
 
 public class Cesped extends Bloque {
     public Cesped(int x, int y, int tamaño) {
-        super(x, y, tamaño, "Cesped", cargarImagen());
+        super(x, y, tamaño, "Cesped", cargarImagen(), 1); // 1 segundo de resistencia, ajustable según tus necesidades
     }
 
     private static Image cargarImagen() {
