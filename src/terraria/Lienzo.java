@@ -18,11 +18,14 @@ public class Lienzo extends Canvas implements KeyListener {
     private Image imagenDerecha;
     private Image imagenIzquierda;
     private Image fondo;
-    private Bloque[] suelo;
-    private Bloque[] troncos;
-    private Bloque[] hojas;
+    private Bloque[] bloques;
     private Bloque bloqueSeleccionado;
     private Bloque bloqueARomper;
+
+    int numPilas = 4; // Número de pilas de troncos
+        int troncosPorPila = 2; // Número de troncos por pila
+        int altoBloque = 40;
+        int anchoPantalla = 1920;
     
     private int tiempoRompiendo; // Contador del tiempo presionando el espacio
     private Timer temporizadorRomper; // Temporizador para medir el tiempo
@@ -32,7 +35,7 @@ public class Lienzo extends Canvas implements KeyListener {
         try {
             imagenDerecha = ImageIO.read(new File("imagenes/personajeRight.png"));
             imagenIzquierda = ImageIO.read(new File("imagenes/personajeLeft.png"));
-            fondo = ImageIO.read(new File("imagenes/fondo.jpg"));
+            fondo = ImageIO.read(new File("imagenes/fondo.jpeg"));
         } catch (IOException e) {
             System.out.println("No se pudo cargar una de las imágenes.");
         }
@@ -54,37 +57,61 @@ public class Lienzo extends Canvas implements KeyListener {
     }
 
     private void crearSuelo() {
-        int anchoPantalla = 900;
-        int altoBloque = 50;
-        int numBloques = anchoPantalla / altoBloque;
-        suelo = new Bloque[numBloques];
-        for (int i = 0; i < numBloques; i++) {
-            suelo[i] = new Cesped(i * altoBloque, 550, altoBloque); // 550 es la posición y para el suelo
-        }
-    }
-
-     private void crearTroncosYHojas() {
-        int numPilas = 2; // Número de pilas de troncos
-        int troncosPorPila = 2; // Número de troncos por pila
-        troncos = new Bloque[numPilas * troncosPorPila];
-        hojas = new Bloque[numPilas * 4]; // Añadir espacio para las hojas: una encima y dos a los lados
-        int altoBloque = 50;
+    
+        int numBloques = 48;
         
-        for (int i = 0; i < numPilas; i++) {
-            int x = i * altoBloque * 5; // Espaciado entre pilas
-            for (int j = 0; j < troncosPorPila; j++) {
-                troncos[i * troncosPorPila + j] = new Tronco(x, 550 - (j + 1) * altoBloque, altoBloque);
-            }
-            // Añadir hoja encima del último tronco
-            hojas[i * 4] = new Hojas(x, 550 - (troncosPorPila + 1) * altoBloque, altoBloque);
-            hojas[i * 4+1] = new Hojas(x, 550 - (troncosPorPila + 2) * altoBloque, altoBloque);
-
-            // Añadir hojas a los lados del último tronco
-            hojas[i * 4 + 2] = new Hojas(x - altoBloque, 550 - (troncosPorPila+1 ) * altoBloque, altoBloque);
-            hojas[i * 4 + 3] = new Hojas(x + altoBloque, 550 - (troncosPorPila +1) * altoBloque, altoBloque);
+        // Asegúrate de que estas variables estén definidas y tengan valores válidos
+        
+    
+        // Total de bloques: césped, rocas, troncos y hojas
+        bloques = new Bloque[((1920/40)*6)+(troncosPorPila+4)*numPilas]; 
+        
+        // Crear bloques de césped
+        for (int i = 0; i < numBloques; i++) {
+            bloques[i] = new Cesped(i * altoBloque, 860, altoBloque); // 500 es la posición y para el suelo
         }
+// roca
+for (int i = 0; i < 48; i++) {
+    bloques[48 + i] = new Tierra(i * altoBloque, 900, altoBloque); // Primera fila de rocas
+}
+for (int i = 0; i < 48; i++) {
+    bloques[96 + i] = new Roca(i * altoBloque, 940, altoBloque); // Segunda fila de rocas
+}
+for (int i = 0; i < 48; i++) {
+    bloques[144 + i] = new Roca(i * altoBloque, 980, altoBloque); // Tercera fila de rocas
+}
+for (int i = 0; i < 48; i++) {
+    bloques[192 + i] = new Roca(i * altoBloque, 1020, altoBloque); // Cuarta fila de rocas
+}
+for (int i = 0; i < 48; i++) {
+    bloques[240 + i] = new Roca(i * altoBloque, 1060, altoBloque); // Quinta fila de rocas
+}
+
+
+        
     }
     
+    private void crearTroncosYHojas() {
+        // Asegúrate de que el número total de bloques es suficiente
+        int currentIndex = (1920 / 40) * 2; // Empezar después del suelo y las rocas
+    
+        for (int i = 0; i < numPilas; i++) {
+            // Desplazamiento inicial para el primer árbol
+            int offset = (i == 0) ? 80 : 0; // 20 píxeles más a la derecha para el primer árbol
+            int x = i * 40 * 10 + offset; // Espaciado entre pilas
+        
+            for (int j = 0; j < troncosPorPila; j++) {
+                bloques[currentIndex++] = new Tronco(x, 860 - (j + 1) * 40, 40);
+            }
+            // Añadir hoja encima del último tronco
+            bloques[currentIndex++] = new Hojas(x, 860 - (troncosPorPila + 1) * 40, 40);
+            bloques[currentIndex++] = new Hojas(x, 860 - (troncosPorPila + 2) * 40, 40);
+        
+            // Añadir hojas a los lados del último tronco
+            bloques[currentIndex++] = new Hojas(x - 40, 860 - (troncosPorPila + 1) * 40, 40);
+            bloques[currentIndex++] = new Hojas(x + 40, 860 - (troncosPorPila + 1) * 40, 40);
+        }
+    }
 
     @Override
     public void paint(Graphics g) {
@@ -92,27 +119,19 @@ public class Lienzo extends Canvas implements KeyListener {
         if (fondo != null) {
             g.drawImage(fondo, 0, 0, getWidth(), getHeight(), this);
         }
-        for (Bloque bloque : suelo) {
+        
+        // Dibujar todos los bloques
+        for (Bloque bloque : bloques) {
             if (bloque != null) { // Asegurarse de no dibujar bloques eliminados
                 bloque.dibujar(g);
             }
         }
-        for (Bloque tronco : troncos) {
-            if (tronco != null) { // Asegurarse de no dibujar bloques eliminados
-                tronco.dibujar(g);
-            }
-        }
-        for (Bloque hoja : hojas) {
-            if (hoja != null) { // Asegurarse de no dibujar bloques eliminados
-                hoja.dibujar(g);
-            }
-        }
         if (personaje.getDireccion() == 'd' && imagenDerecha != null) {
-            g.drawImage(imagenDerecha, personaje.getX(), personaje.getY(), 50, 50, this);
+            g.drawImage(imagenDerecha, personaje.getX(), personaje.getY(), 40, 40, this);
         } else if (personaje.getDireccion() == 'a' && imagenIzquierda != null) {
-            g.drawImage(imagenIzquierda, personaje.getX(), personaje.getY(), 50, 50, this);
+            g.drawImage(imagenIzquierda, personaje.getX(), personaje.getY(), 40, 40, this);
         } else {
-            g.fillRect(personaje.getX(), personaje.getY(), 50, 50);
+            g.fillRect(personaje.getX(), personaje.getY(), 40, 50);
         }
         // Dibujar borde negro alrededor del bloque seleccionado
         if (bloqueSeleccionado != null) {
@@ -158,8 +177,8 @@ public class Lienzo extends Canvas implements KeyListener {
         int index = -1;
         if (bloqueSeleccionado != null) {
             // Buscar índice del bloque seleccionado
-            for (int i = 0; i < troncos.length; i++) {
-                if (troncos[i] == bloqueSeleccionado) {
+            for (int i = 0; i < bloques.length; i++) {
+                if (bloques[i] == bloqueSeleccionado) {
                     index = i;
                     break;
                 }
@@ -167,11 +186,11 @@ public class Lienzo extends Canvas implements KeyListener {
         }
         if (key == KeyEvent.VK_LEFT) {
             if (index > 0) {
-                bloqueSeleccionado = troncos[index - 1];
+                bloqueSeleccionado = bloques[index - 1];
             }
         } else if (key == KeyEvent.VK_RIGHT) {
-            if (index < troncos.length - 1) {
-                bloqueSeleccionado = troncos[index + 1];
+            if (index < bloques.length - 1) {
+                bloqueSeleccionado = bloques[index + 1];
             }
         } else if (key == KeyEvent.VK_UP || key == KeyEvent.VK_DOWN) {
             // Añadir lógica si es necesario para mover arriba/abajo
@@ -207,13 +226,13 @@ public class Lienzo extends Canvas implements KeyListener {
     private void eliminarBloque(Bloque bloque) {
         // Elimina el bloque de cualquier lista donde esté (troncos, hojas, suelo, etc.)
       
-        for (int i = 0; i < troncos.length; i++) {
-            if (troncos[i] == bloque) {
+        for (int i = 0; i < bloques.length; i++) {
+            if (bloques[i] == bloque) {
                 // Desplaza los elementos hacia la izquierda
-                for (int j = i; j < troncos.length - 1; j++) {
-                    troncos[j] = troncos[j + 1]; // Mueve el siguiente elemento a la posición actual
+                for (int j = i; j < bloques.length - 1; j++) {
+                    bloques[j] = bloques[j + 1]; // Mueve el siguiente elemento a la posición actual
                 }
-                troncos[troncos.length - 1] = null; // Opcional: Limpia el último elemento
+                bloques[bloques.length - 1] = null; // Opcional: Limpia el último elemento
                 break; // Salimos del bucle después de eliminar el bloque
             }
         }
