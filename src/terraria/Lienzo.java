@@ -22,10 +22,11 @@ public class Lienzo extends Canvas implements KeyListener {
     private Bloque bloqueSeleccionado;
     private Bloque bloqueARomper;
 
-    int numPilas = 4; // Número de pilas de troncos
-        int troncosPorPila = 2; // Número de troncos por pila
-        int altoBloque = 40;
-        int anchoPantalla = 1920;
+        int numPilas = 2; // Reducimos el número de pilas de troncos
+    int troncosPorPila = 2; // Número de troncos por pila
+    int altoBloque = 20; // Ajustamos el tamaño de los bloques para una pantalla más pequeña
+    int anchoPantalla = 640;
+
     
     private int tiempoRompiendo; // Contador del tiempo presionando el espacio
     private Timer temporizadorRomper; // Temporizador para medir el tiempo
@@ -56,60 +57,45 @@ public class Lienzo extends Canvas implements KeyListener {
         });
     }
 
-    private void crearSuelo() {
-    
-        int numBloques = 48;
-        
-        // Asegúrate de que estas variables estén definidas y tengan valores válidos
-        
-    
+     private void crearSuelo() {
+        int numBloques = 40; // Ajustado para la nueva anchura de la pantalla
+
         // Total de bloques: césped, rocas, troncos y hojas
-        bloques = new Bloque[((1920/40)*6)+(troncosPorPila+4)*numPilas]; 
-        
+        bloques = new Bloque[(anchoPantalla / altoBloque) * 6 + (troncosPorPila + 4) * numPilas];
+
         // Crear bloques de césped
         for (int i = 0; i < numBloques; i++) {
-            bloques[i] = new Cesped(i * altoBloque, 860, altoBloque); // 500 es la posición y para el suelo
+            bloques[i] = new Cesped(i * altoBloque, 300, altoBloque); // Ajustado para la nueva altura del suelo
         }
-// roca
-for (int i = 0; i < 48; i++) {
-    bloques[48 + i] = new Tierra(i * altoBloque, 900, altoBloque); // Primera fila de rocas
-}
-for (int i = 0; i < 48; i++) {
-    bloques[96 + i] = new Roca(i * altoBloque, 940, altoBloque); // Segunda fila de rocas
-}
-for (int i = 0; i < 48; i++) {
-    bloques[144 + i] = new Roca(i * altoBloque, 980, altoBloque); // Tercera fila de rocas
-}
-for (int i = 0; i < 48; i++) {
-    bloques[192 + i] = new Roca(i * altoBloque, 1020, altoBloque); // Cuarta fila de rocas
-}
-for (int i = 0; i < 48; i++) {
-    bloques[240 + i] = new Roca(i * altoBloque, 1060, altoBloque); // Quinta fila de rocas
-}
 
-
-        
+        // Crear filas de rocas debajo del césped
+        for (int i = 0; i < numBloques; i++) {
+            bloques[numBloques + i] = new Tierra(i * altoBloque, 320, altoBloque);
+        }
+        for (int i = 0; i < numBloques; i++) {
+            bloques[numBloques * 2 + i] = new Roca(i * altoBloque, 340, altoBloque);
+        }
+        for (int i = 0; i < numBloques; i++) {
+            bloques[numBloques * 3 + i] = new Roca(i * altoBloque, 360, altoBloque);
+        }
     }
-    
+
     private void crearTroncosYHojas() {
-        // Asegúrate de que el número total de bloques es suficiente
-        int currentIndex = (1920 / 40) * 2; // Empezar después del suelo y las rocas
-    
+        int currentIndex = (anchoPantalla / altoBloque) * 2;
+
         for (int i = 0; i < numPilas; i++) {
-            // Desplazamiento inicial para el primer árbol
-            int offset = (i == 0) ? 80 : 0; // 20 píxeles más a la derecha para el primer árbol
-            int x = i * 40 * 10 + offset; // Espaciado entre pilas
-        
+            int offset = (i == 0) ? 20 : 0;
+            int x = i * altoBloque * 5 + offset;
+
             for (int j = 0; j < troncosPorPila; j++) {
-                bloques[currentIndex++] = new Tronco(x, 860 - (j + 1) * 40, 40);
+                bloques[currentIndex++] = new Tronco(x, 300 - (j + 1) * altoBloque, altoBloque);
             }
-            // Añadir hoja encima del último tronco
-            bloques[currentIndex++] = new Hojas(x, 860 - (troncosPorPila + 1) * 40, 40);
-            bloques[currentIndex++] = new Hojas(x, 860 - (troncosPorPila + 2) * 40, 40);
-        
-            // Añadir hojas a los lados del último tronco
-            bloques[currentIndex++] = new Hojas(x - 40, 860 - (troncosPorPila + 1) * 40, 40);
-            bloques[currentIndex++] = new Hojas(x + 40, 860 - (troncosPorPila + 1) * 40, 40);
+
+            bloques[currentIndex++] = new Hojas(x, 300 - (troncosPorPila + 1) * altoBloque, altoBloque);
+            bloques[currentIndex++] = new Hojas(x, 300 - (troncosPorPila + 2) * altoBloque, altoBloque);
+
+            bloques[currentIndex++] = new Hojas(x - altoBloque, 300 - (troncosPorPila + 1) * altoBloque, altoBloque);
+            bloques[currentIndex++] = new Hojas(x + altoBloque, 300 - (troncosPorPila + 1) * altoBloque, altoBloque);
         }
     }
 
