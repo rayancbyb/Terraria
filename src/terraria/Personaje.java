@@ -50,9 +50,9 @@ public class Personaje {
     // Método para mover al personaje
     public void mover(char movimiento) {
         if (movimiento == 'd') {
-            x = x + 30;
+            x = x + 40;
         } else if (movimiento == 'a') {
-            x = x - 30;
+            x = x - 40;
         }
         this.direccion = movimiento;  // Actualiza la dirección
     }
