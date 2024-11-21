@@ -7,7 +7,7 @@ import javax.imageio.ImageIO;
 
 public class Hojas extends Bloque {
     public Hojas(int x, int y, int tamaño) {
-        super(x, y, tamaño, "Hojas", cargarImagen(), 2); // 2 segundos de resistencia, ajustable según tus necesidades
+        super(x, y, tamaño, "Hojas", cargarImagen(), 2); // 2 seundos de resistencia, ajustable según tus necesidades
     }
 
     private static Image cargarImagen() {
